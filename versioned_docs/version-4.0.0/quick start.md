@@ -4,6 +4,16 @@ sidebar_position: 1
 
 # Quick Start
 
+:::tip Integrate with AI Agents in Seconds
+Building with **Claude Code**, **Cursor**, **Codex**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually. Just copy this prompt to your agent:
+
+```text
+Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
+```
+
+Or jump to [Section 3: Integrate with AI Agents](#integrate-with-ai-agents) / [Dedicated Agent Docs](./agent.md), or click your assistant in the **"Add to your Agent"** sidebar widget!
+:::
+
 The ARCaptcha widget can protect your applications from bots, spam, SMS fraud, and other forms of automated abuse. Installing ARCaptcha is fast and easy. It requires either adding some simple HTML and server side code.
 
 <iframe
@@ -217,7 +227,7 @@ if __name__ == "__main__":
 6. ARCaptcha verifies the token and returns whether it is valid, allowing your server to determine whether to accept the request.
 7. Based on the verification result, your server determines that the requester is not a bot and allows the request to proceed (e.g., login or signup). Pretty simple!
 
-## 3. Integrate with AI Agents
+## 3. Integrate with AI Agents {#integrate-with-ai-agents}
 
 Using an AI coding assistant like **Claude Code**, **Cursor**, **Codex**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually.
 

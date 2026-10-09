@@ -34,7 +34,7 @@ claude "Please read https://docs.arcaptcha.co/onboard.md and help me integrate A
 ### Cursor
 دستورالعمل‌های آرکپچا را به پروژه خود در Cursor اضافه کنید:
 ۱. چت یا Composer کرسر (`Ctrl+L` / `Ctrl+I`) را باز کرده و پرامپت بالا را وارد کنید.<br/>
-۲. یا با کلیک روی دکمه **Cursor** در نوار کناری مستندات، قوانین پروژه را مستقیماً از طریق `https://cursor.com/link/rule` وارد نمایید.<br/>
+۲. یا با کلیک روی دکمه **Cursor** در نوار کناری مستندات، پرامپت را مستقیماً از طریق `https://cursor.com/link/prompt` در Cursor اجرا نمایید.<br/>
 ۳. همچنین می‌توانید با ارجاع به `https://docs.arcaptcha.co/onboard.md` در فایل `.cursorrules` پروژه، این دستورالعمل‌ها را ذخیره کنید.
 
 ### Codex
@@ -42,10 +42,10 @@ claude "Please read https://docs.arcaptcha.co/onboard.md and help me integrate A
 ```text
 Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
 ```
-یا با کلیک روی دکمه **Codex** در نوار کناری مستندات، یک پنجره جدید با پروتکل `codex://threads/new` باز کنید.
+یا با کلیک روی دکمه **Codex** در نوار کناری مستندات، نشست Codex CLI را با پروتکل `codex-cli://open` باز کنید.
 
 ### OpenCode
-در OpenCode، پرامپت را در نشست CLI یا ویرایشگر وارد کنید. با کلیک روی دکمه **OpenCode** در نوار کناری مستندات، پرامپت بلافاصله در کلیپ‌بورد کپی می‌شود.
+در OpenCode، با کلیک روی دکمه **OpenCode** در نوار کناری مستندات برنامه با پروتکل `opencode://open` اجرا شده و پرامپت بلافاصله در کلیپ‌بورد کپی می‌شود.
 
 ---
 

@@ -39,6 +39,13 @@ test("English Quick Start includes 'Integrate with AI Agents' section with promp
     /llms\.txt/,
     "English Quick Start must link or reference llms.txt"
   );
+
+  // Top tip callout
+  assert.match(
+    content,
+    /# Quick Start\s*:::tip/m,
+    "English Quick Start must include :::tip callout right below # Quick Start heading"
+  );
 });
 
 test("Persian Quick Start includes translated 'Integrate with AI Agents' section with prompt and links", () => {
@@ -68,6 +75,13 @@ test("Persian Quick Start includes translated 'Integrate with AI Agents' section
     content,
     /llms\.txt/,
     "Persian Quick Start must link or reference llms.txt"
+  );
+
+  // Top tip callout
+  assert.match(
+    content,
+    /# شروع سریع\s*:::tip/m,
+    "Persian Quick Start must include :::tip callout right below # شروع سریع heading"
   );
 });
 
