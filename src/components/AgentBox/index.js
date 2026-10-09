@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { getDocGitHubUrls } from './urls';
 import styles from './styles.module.css';
 
 const ONBOARD_PROMPT =
@@ -52,9 +55,39 @@ const AGENTS = [
   },
 ];
 
-export default function AgentBox() {
+export default function AgentBox({ doc: propDoc }) {
   const [toastMessage, setToastMessage] = useState(null);
+  const [isCopying, setIsCopying] = useState(false);
   const timeoutRef = useRef(null);
+
+  // Safely obtain doc context if not provided as prop
+  let docContext = null;
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    docContext = useDoc();
+  } catch {
+    // Context may be unavailable in isolated rendering/tests
+  }
+  const currentDoc = propDoc || docContext;
+
+  // Safely obtain docusaurus site config
+  let siteConfig = null;
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const docusaurusContext = useDocusaurusContext();
+    siteConfig = docusaurusContext?.siteConfig;
+  } catch {
+    // Context may be unavailable in isolated rendering/tests
+  }
+
+  const { rawUrl, githubUrl } = getDocGitHubUrls(
+    currentDoc?.metadata?.source,
+    {
+      org: siteConfig?.organizationName || 'arcaptcha',
+      project: siteConfig?.projectName || 'arcaptcha-docs',
+      branch: 'main',
+    }
+  );
 
   useEffect(() => {
     return () => {
@@ -111,27 +144,62 @@ export default function AgentBox() {
 
   const handleCopyPageText = async (event) => {
     event.preventDefault();
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || isCopying) return;
 
+    setIsCopying(true);
     let content = '';
-    const article = document.querySelector('article');
-    if (article) {
-      content = article.innerText.trim();
-    } else {
+    let fetchedFromGitHub = false;
+
+    // 1. Fetch raw Markdown from GitHub using active doc's source metadata
+    if (rawUrl) {
+      try {
+        const response = await fetch(rawUrl);
+        if (response.ok) {
+          const rawText = await response.text();
+          if (rawText && rawText.trim().length > 0) {
+            content = rawText;
+            fetchedFromGitHub = true;
+          }
+        }
+      } catch {
+        // Fall through to DOM fallback on network/CORS error or offline mode
+      }
+    }
+
+    // 2. Graceful DOM text fallback
+    if (!content) {
+      const article = document.querySelector('article');
+      if (article) {
+        content = (article.innerText || article.textContent || '').trim();
+      }
+    }
+
+    // 3. Fallback to onboarding prompt if content is still empty
+    if (!content) {
       content = ONBOARD_PROMPT;
     }
 
     const success = await copyToClipboard(content);
+    setIsCopying(false);
+
     if (success) {
-      triggerToast('Page text copied to clipboard!');
+      triggerToast(
+        fetchedFromGitHub
+          ? 'Page Markdown copied to clipboard!'
+          : 'Page text copied to clipboard!'
+      );
     } else {
-      triggerToast('Failed to copy page text.');
+      triggerToast('Failed to copy page content.');
     }
   };
 
   const handleOpenMarkdown = (event) => {
+    event.preventDefault();
     if (typeof window === 'undefined') return;
-    window.open('/onboard.md', '_blank', 'noopener,noreferrer');
+
+    // Opens active document source file on GitHub in a new tab
+    const targetUrl = githubUrl || 'https://github.com/arcaptcha/arcaptcha-docs';
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -168,9 +236,10 @@ export default function AgentBox() {
         <div className={styles.utilityActions}>
           <button
             type="button"
-            className={styles.utilityButton}
+            className={`${styles.utilityButton} ${isCopying ? styles.utilityButtonLoading : ''}`}
             onClick={handleCopyPageText}
-            title="Copy clean page text to clipboard"
+            disabled={isCopying}
+            title="Fetch and copy raw page Markdown from GitHub (with DOM fallback)"
           >
             <svg
               className={styles.agentIcon}
@@ -182,14 +251,14 @@ export default function AgentBox() {
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
             </svg>
-            <span>Copy Text Content</span>
+            <span>{isCopying ? 'Copying...' : 'Copy Text Content'}</span>
           </button>
 
           <button
             type="button"
             className={styles.utilityButton}
             onClick={handleOpenMarkdown}
-            title="Open raw markdown specification"
+            title="Open page Markdown source on GitHub in a new tab"
           >
             <svg
               className={styles.agentIcon}

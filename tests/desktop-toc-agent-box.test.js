@@ -125,3 +125,110 @@ test("AgentBox styles support dark/light modes and hide on mobile viewports", ()
     "AgentBox styles must utilize Docusaurus theme variables or dark theme selectors"
   );
 });
+
+test("getDocGitHubUrls helper computes raw and GitHub blob URLs from doc source metadata", () => {
+  const urlsModulePath = path.join(agentBoxDir, "urls.js");
+  assert.ok(
+    fs.existsSync(urlsModulePath),
+    "src/components/AgentBox/urls.js helper module must exist"
+  );
+
+  const { getDocGitHubUrls, getDocSourcePath } = require(urlsModulePath);
+
+  // Normal English versioned doc with space
+  const enUrls = getDocGitHubUrls("@site/versioned_docs/version-4.0.0/quick start.md", {
+    org: "arcaptcha",
+    project: "arcaptcha-docs",
+    branch: "main",
+  });
+  assert.strictEqual(
+    enUrls.rawUrl,
+    "https://raw.githubusercontent.com/arcaptcha/arcaptcha-docs/main/versioned_docs/version-4.0.0/quick%20start.md"
+  );
+  assert.strictEqual(
+    enUrls.githubUrl,
+    "https://github.com/arcaptcha/arcaptcha-docs/blob/main/versioned_docs/version-4.0.0/quick%20start.md"
+  );
+
+  // Persian localized doc
+  const faUrls = getDocGitHubUrls("@site/i18n/fa/docusaurus-plugin-content-docs/version-4.0.0/quick start.md", {
+    org: "arcaptcha",
+    project: "arcaptcha-docs",
+  });
+  assert.strictEqual(
+    faUrls.rawUrl,
+    "https://raw.githubusercontent.com/arcaptcha/arcaptcha-docs/main/i18n/fa/docusaurus-plugin-content-docs/version-4.0.0/quick%20start.md"
+  );
+  assert.strictEqual(
+    faUrls.githubUrl,
+    "https://github.com/arcaptcha/arcaptcha-docs/blob/main/i18n/fa/docusaurus-plugin-content-docs/version-4.0.0/quick%20start.md"
+  );
+
+  // Path cleaner
+  assert.strictEqual(
+    getDocSourcePath("@site/docs/overview.md"),
+    "docs/overview.md"
+  );
+
+  // Graceful fallback when source is missing
+  const fallbackUrls = getDocGitHubUrls(null, {
+    org: "arcaptcha",
+    project: "arcaptcha-docs",
+  });
+  assert.match(fallbackUrls.githubUrl, /github\.com\/arcaptcha\/arcaptcha-docs/);
+  assert.match(fallbackUrls.rawUrl, /raw\.githubusercontent\.com\/arcaptcha\/arcaptcha-docs/);
+});
+
+test("AgentBox implements Copy Text Content with GitHub fetch and DOM fallback", () => {
+  const componentContent = fs.readFileSync(agentBoxComponentPath, "utf8");
+
+  // Document action buttons present
+  assert.match(
+    componentContent,
+    /Copy Text Content/i,
+    "AgentBox must render Copy Text Content button"
+  );
+  assert.match(
+    componentContent,
+    /Open Markdown/i,
+    "AgentBox must render Open Markdown button"
+  );
+
+  // GitHub raw fetch logic
+  assert.match(
+    componentContent,
+    /raw\.githubusercontent\.com|getDocGitHubUrls|fetch\(/i,
+    "AgentBox must fetch raw page markdown from GitHub"
+  );
+
+  // DOM fallback
+  assert.match(
+    componentContent,
+    /article/i,
+    "AgentBox must query article element as fallback"
+  );
+
+  // Toast confirmation
+  assert.match(
+    componentContent,
+    /triggerToast\(/i,
+    "AgentBox must trigger toast notification on copy"
+  );
+});
+
+test("AgentBox implements Open Markdown opening GitHub file in a new tab", () => {
+  const componentContent = fs.readFileSync(agentBoxComponentPath, "utf8");
+
+  // GitHub file opening
+  assert.match(
+    componentContent,
+    /window\.open\([^,]+,\s*['"]_blank['"]/i,
+    "Open Markdown button must open source file in a new tab"
+  );
+  assert.match(
+    componentContent,
+    /github\.com/i,
+    "Open Markdown button must open GitHub file URL"
+  );
+});
+

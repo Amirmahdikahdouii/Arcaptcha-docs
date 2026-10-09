@@ -135,7 +135,7 @@
   text-align: left;
 }
 
-.utilityButton:hover {
+.utilityButton:hover:not(:disabled) {
   color: var(--ifm-color-primary, #867ee2);
   background: rgba(0, 0, 0, 0.04);
 }
@@ -144,10 +144,20 @@
   color: var(--ifm-color-emphasis-500, #9ca3af);
 }
 
-[data-theme='dark'] .utilityButton:hover {
+[data-theme='dark'] .utilityButton:hover:not(:disabled) {
   color: var(--ifm-color-primary-light, #a5b4fc);
   background: rgba(255, 255, 255, 0.06);
 }
+
+.utilityButton:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.utilityButtonLoading {
+  opacity: 0.75;
+}
+
 
 .toast {
   display: flex;
