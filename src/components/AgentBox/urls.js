@@ -29,7 +29,34 @@ function getDocGitHubUrls(source, options = {}) {
   };
 }
 
+function getLocalMarkdownUrl(source) {
+  const filePath = getDocSourcePath(source);
+  if (!filePath) return '/onboard.md';
+  return `/markdown/${encodeURI(filePath)}`;
+}
+
+const DEFAULT_ONBOARD_PROMPT =
+  'Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.';
+
+function getPagePrompt(doc) {
+  if (!doc || !doc.metadata) {
+    return DEFAULT_ONBOARD_PROMPT;
+  }
+
+  const { title, permalink, id } = doc.metadata;
+  if (!title || id === 'agent' || permalink === '/' || permalink === '/fa/') {
+    return DEFAULT_ONBOARD_PROMPT;
+  }
+
+  const pageUrl = `https://docs.arcaptcha.co${permalink || ''}`;
+  return `Please read https://docs.arcaptcha.co/onboard.md and the "${title}" documentation at ${pageUrl} to help me integrate ARCaptcha into this project.`;
+}
+
 module.exports = {
+  DEFAULT_ONBOARD_PROMPT,
+  getPagePrompt,
   getDocSourcePath,
   getDocGitHubUrls,
+  getLocalMarkdownUrl,
 };
+
