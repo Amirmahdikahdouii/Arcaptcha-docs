@@ -224,3 +224,13 @@ When asked to integrate ARCaptcha into a repository:
 5. Retrieve `secret_key` from backend environment variables (`process.env` / `os.getenv`).
 6. Make a POST request to `https://api.arcaptcha.co/arcaptcha/api/verify` with `site_key`, `secret_key`, and `challenge_id: token`.
 7. Guard business logic execution based on `success === true`.
+
+---
+
+## 7. Standard 1-Click Prompt
+
+Developers invoking AI assistants (Claude Code, Cursor, Codex, OpenCode) should use:
+
+```text
+Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
+```

@@ -371,3 +371,22 @@ curl -X POST https://api.arcaptcha.co/arcaptcha/api/verify \
     "challenge_id": "TOKEN_FROM_FORM"
   }'
 ```
+
+## 9. AI Agent Integration & Onboarding
+
+### 1-Click Prompt
+```text
+Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
+```
+
+### Supported AI Assistants
+- **Claude Code**: Terminal invocation (`claude "..."`) and deep link `claude-cli://open?q=...`.
+- **Cursor**: Composer / Chat integration, `.cursorrules` configuration, and `https://cursor.com/link/rule`.
+- **Codex**: Direct thread initiation and `codex://threads/new?prompt=...`.
+- **OpenCode**: CLI prompt input and automated clipboard copying.
+
+### Security Principles
+- Never expose `secret_key` in client-side code, git repositories, or frontend bundles.
+- Keep `secret_key` in server environment variables (e.g. `ARCAPTCHA_SECRET_KEY`).
+- Provide only `site_key` for client-side HTML containers and widgets.
+

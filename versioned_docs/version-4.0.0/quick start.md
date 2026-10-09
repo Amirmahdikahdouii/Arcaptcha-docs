@@ -216,3 +216,26 @@ if __name__ == "__main__":
 
 6. ARCaptcha verifies the token and returns whether it is valid, allowing your server to determine whether to accept the request.
 7. Based on the verification result, your server determines that the requester is not a bot and allows the request to proceed (e.g., login or signup). Pretty simple!
+
+## 3. Integrate with AI Agents
+
+Using an AI coding assistant like **Claude Code**, **Cursor**, **Codex**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually.
+
+### 1-Click Agent Prompt
+
+Copy this prompt and provide it to your agent:
+
+```text
+Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
+```
+
+### Machine-Readable Specifications
+
+For deep technical specifications or full context ingestion:
+- **[Agent Onboard Specification](https://docs.arcaptcha.co/onboard.md)**: Authoritative integration instructions detailing client script embedding, container placement, token extraction, server verification endpoints, and official SDKs.
+- **[Documentation Index (llms.txt)](https://docs.arcaptcha.co/llms.txt)**: High-density index of all documentation guides and resources.
+- **[Consolidated Documentation (llms-full.txt)](https://docs.arcaptcha.co/llms-full.txt)**: Full technical documentation in a single unified reference.
+
+:::tip Desktop Sidebar Widget
+You can also use the **"Add to your Agent"** widget in the right sidebar Table of Contents on any documentation page to launch Claude Code, Cursor, Codex, or copy prompts in 1-click!
+:::
