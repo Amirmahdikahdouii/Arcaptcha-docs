@@ -381,9 +381,9 @@ Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha
 
 ### Supported AI Assistants
 - **Claude Code**: Terminal invocation (`claude "..."`) and deep link `claude-cli://open?q=...`.
-- **Cursor**: Composer / Chat integration, `.cursorrules` configuration, and `https://cursor.com/link/rule`.
-- **Codex**: Direct thread initiation and `codex://threads/new?prompt=...`.
-- **OpenCode**: CLI prompt input and automated clipboard copying.
+- **Cursor**: Composer / Chat prompt injection and deep link `https://cursor.com/link/prompt?text=...`.
+- **Codex**: Terminal CLI session and deep link `codex-cli://open?q=...`.
+- **OpenCode**: CLI prompt input, automated clipboard copying, and deep link `opencode://open?prompt=...`.
 
 ### Security Principles
 - Never expose `secret_key` in client-side code, git repositories, or frontend bundles.

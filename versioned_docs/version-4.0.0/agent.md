@@ -34,7 +34,7 @@ You can also launch Claude Code directly from the **Add to your Agent** sidebar 
 ### Cursor
 Add ARCaptcha integration instructions to your project in Cursor:
 1. Open **Cursor Chat** (`Ctrl+L` / `Cmd+L`) or **Composer** (`Ctrl+I` / `Cmd+I`) and paste the prompt.
-2. Or import it directly as a Cursor rule using the **Cursor** button in the documentation sidebar (`https://cursor.com/link/rule`).
+2. Or trigger it directly as a prompt using the **Cursor** button in the documentation sidebar (`https://cursor.com/link/prompt`).
 3. You can also persist it in your repository's `.cursorrules` file by referencing `https://docs.arcaptcha.co/onboard.md`.
 
 ### Codex
@@ -42,10 +42,10 @@ Start a new task in Codex with the onboarding prompt:
 ```text
 Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
 ```
-Or click the **Codex** button in our desktop documentation sidebar to launch a thread via `codex://threads/new`.
+Or click the **Codex** button in our desktop documentation sidebar to launch a session in the Codex CLI via `codex-cli://open`.
 
 ### OpenCode
-In OpenCode, paste the onboarding prompt into your CLI session or web workspace. Click the **OpenCode** button in our documentation sidebar to instantly copy the prompt to your clipboard.
+In OpenCode, launch a new session via the **OpenCode** button in our documentation sidebar (`opencode://open`), which automatically copies the onboarding prompt to your clipboard.
 
 ---
 

@@ -86,8 +86,8 @@ test("AgentBox component contains 4 agent buttons with correct deep links and pr
   );
   assert.match(
     componentContent,
-    /https:\/\/cursor\.com\/link\/rule\?/i,
-    "Cursor must have deep link https://cursor.com/link/rule?..."
+    /https:\/\/cursor\.com\/link\/prompt\?text=/i,
+    "Cursor must have deep link https://cursor.com/link/prompt?text=..."
   );
 
   assert.match(
@@ -97,14 +97,19 @@ test("AgentBox component contains 4 agent buttons with correct deep links and pr
   );
   assert.match(
     componentContent,
-    /codex:\/\/threads\/new\?prompt=/i,
-    "Codex must have deep link codex://threads/new?prompt=..."
+    /codex-cli:\/\/open\?q=/i,
+    "Codex must have deep link codex-cli://open?q=..."
   );
 
   assert.match(
     componentContent,
     /OpenCode/i,
     "AgentBox must render OpenCode button"
+  );
+  assert.match(
+    componentContent,
+    /opencode:\/\/open\?prompt=/i,
+    "OpenCode must have deep link opencode://open?prompt=..."
   );
 
   // Clipboard copy & visual toast feedback
