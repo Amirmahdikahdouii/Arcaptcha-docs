@@ -9,7 +9,7 @@ const agentBoxDir = path.join(repoRoot, "src/components/AgentBox");
 const agentBoxComponentPath = path.join(agentBoxDir, "index.js");
 const agentBoxStylesPath = path.join(agentBoxDir, "styles.module.css");
 
-test("DocItem/TOC/Desktop swizzle wrapper exists and cleanly wraps original TOC", () => {
+test("DocItem/TOC/Desktop swizzle wrapper exists and cleanly wraps original TOC in a shared sticky container", () => {
   assert.ok(
     fs.existsSync(wrapperPath),
     "src/theme/DocItem/TOC/Desktop/index.js must exist to wrap desktop TOC"
@@ -25,6 +25,28 @@ test("DocItem/TOC/Desktop swizzle wrapper exists and cleanly wraps original TOC"
     wrapperContent,
     /AgentBox/,
     "Wrapper must render AgentBox below desktop TOC"
+  );
+  assert.match(
+    wrapperContent,
+    /desktopTOCContainer/,
+    "Wrapper must wrap TOC and AgentBox in desktopTOCContainer"
+  );
+
+  const wrapperStylesPath = path.join(repoRoot, "src/theme/DocItem/TOC/Desktop/styles.module.css");
+  assert.ok(
+    fs.existsSync(wrapperStylesPath),
+    "src/theme/DocItem/TOC/Desktop/styles.module.css must exist"
+  );
+  const stylesContent = fs.readFileSync(wrapperStylesPath, "utf8");
+  assert.match(
+    stylesContent,
+    /position:\s*sticky/,
+    "desktopTOCContainer must use sticky positioning"
+  );
+  assert.match(
+    stylesContent,
+    /theme-doc-toc-desktop/,
+    "styles must target inner theme-doc-toc-desktop to prevent detached scrolling"
   );
 });
 
