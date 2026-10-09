@@ -5,7 +5,7 @@ sidebar_position: 1
 # Quick Start
 
 :::tip Integrate with AI Agents in Seconds
-Building with **Claude Code**, **Cursor**, **Codex**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually. Just copy this prompt to your agent:
+Building with **Claude Code**, **Cursor**, **ChatGPT**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually. Just copy this prompt to your agent:
 
 ```text
 Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
@@ -229,7 +229,7 @@ if __name__ == "__main__":
 
 ## 3. Integrate with AI Agents {#integrate-with-ai-agents}
 
-Using an AI coding assistant like **Claude Code**, **Cursor**, **Codex**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually.
+Using an AI coding assistant like **Claude Code**, **Cursor**, **ChatGPT**, or **OpenCode**? You can integrate ARCaptcha automatically without writing integration boilerplate manually.
 
 ### 1-Click Agent Prompt
 
@@ -247,5 +247,5 @@ For deep technical specifications or full context ingestion:
 - **[Consolidated Documentation (llms-full.txt)](https://docs.arcaptcha.co/llms-full.txt)**: Full technical documentation in a single unified reference.
 
 :::tip Desktop Sidebar Widget
-You can also use the **"Add to your Agent"** widget in the right sidebar Table of Contents on any documentation page to launch Claude Code, Cursor, Codex, or copy prompts in 1-click!
+You can also use the **"Add to your Agent"** widget in the right sidebar Table of Contents on any documentation page to launch Claude Code, Cursor, ChatGPT, or copy prompts in 1-click!
 :::

@@ -5,7 +5,7 @@ description: "Complete guide for AI coding assistants to integrate ARCaptcha bot
 
 # ARCaptcha Integration Guide for AI Agents
 
-This specification provides autonomous AI coding agents (Claude Code, Cursor, Codex, OpenCode, and others) with authoritative, self-contained technical instructions to integrate ARCaptcha into any web application or backend service.
+This specification provides autonomous AI coding agents (Claude Code, Cursor, ChatGPT, OpenCode, and others) with authoritative, self-contained technical instructions to integrate ARCaptcha into any web application or backend service.
 
 ---
 
@@ -229,7 +229,7 @@ When asked to integrate ARCaptcha into a repository:
 
 ## 7. Standard 1-Click Prompt
 
-Developers invoking AI assistants (Claude Code, Cursor, Codex, OpenCode) should use:
+Developers invoking AI assistants (Claude Code, Cursor, ChatGPT, OpenCode) should use:
 
 ```text
 Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.

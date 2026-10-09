@@ -382,7 +382,7 @@ Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha
 ### Supported AI Assistants
 - **Claude Code**: Terminal invocation (`claude "..."`) and deep link `claude-cli://open?q=...`.
 - **Cursor**: Composer / Chat prompt injection and deep link `https://cursor.com/link/prompt?text=...`.
-- **Codex**: Terminal CLI session and deep link `codex-cli://open?q=...`.
+- **ChatGPT**: Web & desktop session and deep link `https://chatgpt.com/?q=...`.
 - **OpenCode**: CLI prompt input, automated clipboard copying, and deep link `opencode://open?prompt=...`.
 
 ### Security Principles

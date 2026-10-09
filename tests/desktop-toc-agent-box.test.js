@@ -92,13 +92,13 @@ test("AgentBox component contains 4 agent buttons with correct deep links and pr
 
   assert.match(
     componentContent,
-    /Codex/i,
-    "AgentBox must render Codex button"
+    /ChatGPT/i,
+    "AgentBox must render ChatGPT button"
   );
   assert.match(
     componentContent,
-    /codex-cli:\/\/open\?q=/i,
-    "Codex must have deep link codex-cli://open?q=..."
+    /https:\/\/chatgpt\.com\/\?q=/i,
+    "ChatGPT must have deep link https://chatgpt.com/?q=..."
   );
 
   assert.match(
@@ -257,5 +257,45 @@ test("AgentBox implements Open Markdown opening GitHub file in a new tab", () =>
     /github\.com/i,
     "Open Markdown button must open GitHub file URL"
   );
+});
+
+test("getPagePrompt dynamically resolves page-specific prompts and falls back to onboard prompt", () => {
+  const { getPagePrompt, DEFAULT_ONBOARD_PROMPT } = require(path.join(agentBoxDir, "urls.js"));
+
+  // Base/fallback
+  assert.strictEqual(getPagePrompt(null), DEFAULT_ONBOARD_PROMPT);
+  assert.strictEqual(getPagePrompt({ metadata: { id: "agent" } }), DEFAULT_ONBOARD_PROMPT);
+
+  // Dynamic page prompt
+  const configDoc = {
+    metadata: {
+      id: "configuration",
+      title: "Configuration",
+      permalink: "/configuration",
+    },
+  };
+  const configPrompt = getPagePrompt(configDoc);
+  assert.match(configPrompt, /Configuration/);
+  assert.match(configPrompt, /https:\/\/docs\.arcaptcha\.co\/configuration/);
+  assert.match(configPrompt, /https:\/\/docs\.arcaptcha\.co\/onboard\.md/);
+});
+
+test("AgentCards component renders 5 glass cards with official agent SVGs and copy prompt action", () => {
+  const agentCardsPath = path.join(repoRoot, "src/components/AgentCards/index.js");
+  const agentCardsStylesPath = path.join(repoRoot, "src/components/AgentCards/styles.module.css");
+
+  assert.ok(fs.existsSync(agentCardsPath), "AgentCards component must exist");
+  assert.ok(fs.existsSync(agentCardsStylesPath), "AgentCards styles must exist");
+
+  const componentContent = fs.readFileSync(agentCardsPath, "utf8");
+  assert.match(componentContent, /Claude Code/i);
+  assert.match(componentContent, /Cursor/i);
+  assert.match(componentContent, /ChatGPT/i);
+  assert.match(componentContent, /OpenCode/i);
+  assert.match(componentContent, /Other AI Agents|سایر ایجنت‌ها/i);
+
+  const stylesContent = fs.readFileSync(agentCardsStylesPath, "utf8");
+  assert.match(stylesContent, /backdrop-filter:\s*blur/i);
+  assert.match(stylesContent, /glassCard/i);
 });
 

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Agent Skills & AI Integration
 
-Using **Claude Code**, **Cursor**, **Codex**, **OpenCode**, or another AI coding assistant? You can integrate ARCaptcha bot protection into your application automatically without writing repetitive boilerplate code.
+Using **Claude Code**, **Cursor**, **ChatGPT**, **OpenCode**, or another AI coding assistant? You can integrate ARCaptcha bot protection into your application automatically without writing repetitive boilerplate code.
 
 ARCaptcha provides standardized, machine-readable specifications that enable autonomous agents to configure client-side widget embedding, server-side challenge verification, and official SDKs with zero guesswork.
 
@@ -24,28 +24,9 @@ This single command directs your agent to our comprehensive, machine-readable [o
 
 ## Supported AI Assistants
 
-### Claude Code
-Run Claude Code in your terminal and pass the prompt directly:
-```bash
-claude "Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project."
-```
-You can also launch Claude Code directly from the **Add to your Agent** sidebar widget on any documentation page using the `claude-cli://` protocol.
+import AgentCards from '@site/src/components/AgentCards';
 
-### Cursor
-Add ARCaptcha integration instructions to your project in Cursor:
-1. Open **Cursor Chat** (`Ctrl+L` / `Cmd+L`) or **Composer** (`Ctrl+I` / `Cmd+I`) and paste the prompt.
-2. Or trigger it directly as a prompt using the **Cursor** button in the documentation sidebar (`https://cursor.com/link/prompt`).
-3. You can also persist it in your repository's `.cursorrules` file by referencing `https://docs.arcaptcha.co/onboard.md`.
-
-### Codex
-Start a new task in Codex with the onboarding prompt:
-```text
-Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
-```
-Or click the **Codex** button in our desktop documentation sidebar to launch a session in the Codex CLI via `codex-cli://open`.
-
-### OpenCode
-In OpenCode, launch a new session via the **OpenCode** button in our documentation sidebar (`opencode://open`), which automatically copies the onboarding prompt to your clipboard.
+<AgentCards />
 
 ---
 

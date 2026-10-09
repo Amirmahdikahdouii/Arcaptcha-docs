@@ -67,7 +67,7 @@ test("Desktop TOC AgentBox widget renders cleanly in production HTML bundles", (
     // 4 Agent buttons
     assert.match(html, /Claude Code/i, `${pagePath} must render Claude Code button`);
     assert.match(html, /Cursor/i, `${pagePath} must render Cursor button`);
-    assert.match(html, /Codex/i, `${pagePath} must render Codex button`);
+    assert.match(html, /ChatGPT/i, `${pagePath} must render ChatGPT button`);
     assert.match(html, /OpenCode/i, `${pagePath} must render OpenCode button`);
 
     // Utility actions

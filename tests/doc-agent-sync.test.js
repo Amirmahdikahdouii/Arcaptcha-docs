@@ -102,7 +102,7 @@ test("English Agent page is updated for modern AI coding assistants with no lega
   // Covers modern AI coding assistants
   assert.match(content, /Claude Code/i, "Must guide on Claude Code");
   assert.match(content, /Cursor/i, "Must guide on Cursor");
-  assert.match(content, /Codex/i, "Must guide on Codex");
+  assert.match(content, /ChatGPT/i, "Must guide on ChatGPT");
   assert.match(content, /OpenCode/i, "Must guide on OpenCode");
 
   // 1-click prompt
@@ -137,7 +137,7 @@ test("Persian Agent page is updated in full parity with English version", () => 
   // Covers modern AI coding assistants
   assert.match(content, /Claude Code/i, "Must mention Claude Code");
   assert.match(content, /Cursor/i, "Must mention Cursor");
-  assert.match(content, /Codex/i, "Must mention Codex");
+  assert.match(content, /ChatGPT/i, "Must mention ChatGPT");
   assert.match(content, /OpenCode/i, "Must mention OpenCode");
 
   // 1-click prompt

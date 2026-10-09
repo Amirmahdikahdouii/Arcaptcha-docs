@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # مهارت‌های ایجنت و ادغام با هوش مصنوعی
 
-آیا از دستیارهای کدنویسی هوش مصنوعی مانند **Claude Code**، **Cursor**، **Codex**، **OpenCode** یا ابزارهای دیگر استفاده می‌کنید؟ شما می‌توانید ویجت محافظت در برابر ربات **آرکپچا** را بدون نیاز به نوشتن دستی کدهای تکراری، به‌صورت خودکار در پروژه‌های خود ادغام کنید.
+آیا از دستیارهای کدنویسی هوش مصنوعی مانند **Claude Code**، **Cursor**، **ChatGPT**، **OpenCode** یا ابزارهای دیگر استفاده می‌کنید؟ شما می‌توانید ویجت محافظت در برابر ربات **آرکپچا** را بدون نیاز به نوشتن دستی کدهای تکراری، به‌صورت خودکار در پروژه‌های خود ادغام کنید.
 
 آرکپچا مشخصات ماشین‌خوان و استانداردی ارائه می‌دهد که به ایجنت‌های خودمختار اجازه می‌دهد تنظیمات لود اسکریپت سمت کلاینت، قرار دادن کانتینر، اعتبارسنجی سمت سرور و کتابخانه‌های رسمی را بدون خطا و ابهام پیکربندی کنند.
 
@@ -24,28 +24,9 @@ Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha
 
 ## دستیارهای هوش مصنوعی پشتیبانی‌شده
 
-### Claude Code
-ابزار Claude Code را در ترمینال خود اجرا کرده و پرامپت را مستقیماً به آن بدهید:
-```bash
-claude "Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project."
-```
-همچنین می‌توانید در ستون فهرست مطالب صفحات مستندات، با کلیک روی دکمه **Claude Code** (با پروتکل `claude-cli://`) آن را باز کنید.
+import AgentCards from '@site/src/components/AgentCards';
 
-### Cursor
-دستورالعمل‌های آرکپچا را به پروژه خود در Cursor اضافه کنید:
-۱. چت یا Composer کرسر (`Ctrl+L` / `Ctrl+I`) را باز کرده و پرامپت بالا را وارد کنید.<br/>
-۲. یا با کلیک روی دکمه **Cursor** در نوار کناری مستندات، پرامپت را مستقیماً از طریق `https://cursor.com/link/prompt` در Cursor اجرا نمایید.<br/>
-۳. همچنین می‌توانید با ارجاع به `https://docs.arcaptcha.co/onboard.md` در فایل `.cursorrules` پروژه، این دستورالعمل‌ها را ذخیره کنید.
-
-### Codex
-یک تسک جدید در Codex با پرامپت آماده شروع کنید:
-```text
-Please read https://docs.arcaptcha.co/onboard.md and help me integrate ARCaptcha into this project.
-```
-یا با کلیک روی دکمه **Codex** در نوار کناری مستندات، نشست Codex CLI را با پروتکل `codex-cli://open` باز کنید.
-
-### OpenCode
-در OpenCode، با کلیک روی دکمه **OpenCode** در نوار کناری مستندات برنامه با پروتکل `opencode://open` اجرا شده و پرامپت بلافاصله در کلیپ‌بورد کپی می‌شود.
+<AgentCards />
 
 ---
 
